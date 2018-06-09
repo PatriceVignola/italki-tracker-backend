@@ -7,6 +7,7 @@ import cors from 'cors';
 import express from 'express';
 import expressGraphql from 'express-graphql';
 import {buildSchema} from 'graphql';
+import {fetchUser} from 'italki-api';
 
 const schema = buildSchema(`
   type User {
@@ -19,9 +20,12 @@ const schema = buildSchema(`
 `);
 
 const root = {
-  user: () => ({
-    id: () => 123456,
-  }),
+  user: async () => {
+    const user = await fetchUser(1280555);
+    return {
+      id: () => user.id,
+    };
+  },
 };
 
 const app = express();

@@ -2291,11 +2291,12 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-italki-api@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/italki-api/-/italki-api-0.1.0.tgz#ba9f6e320edff0a55be6ece39c8932e62113d31e"
+italki-api@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/italki-api/-/italki-api-0.1.1.tgz#a0b48af8ae10df6528bd6da6e26b9b608e8b8b94"
   dependencies:
     node-fetch "^2.1.2"
+    regenerator-runtime "^0.11.1"
 
 iterall@^1.2.1:
   version "1.2.2"
@@ -3278,7 +3279,7 @@ regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
-regenerator-runtime@^0.11.0:
+regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 

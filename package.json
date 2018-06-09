@@ -46,7 +46,7 @@
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
-    "italki-api": "^0.1.0"
+    "italki-api": "^0.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
