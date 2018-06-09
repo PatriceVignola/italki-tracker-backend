@@ -1,0 +1,16 @@
+[ignore]
+.*/examples/*
+.*/*.test.js
+.*/__tests__/*
+
+[include]
+<PROJECT_ROOT>/src/
+
+[libs]
+
+[lints]
+
+[options]
+emoji=true
+
+[strict]
