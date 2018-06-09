@@ -4,7 +4,7 @@
   "description": "An unofficial API for italki.com.",
   "main": "index.js",
   "scripts": {
-    "start": "node start",
+    "start": "node server",
     "lint": "eslint .",
     "prettier-lint": "prettier es6 --write server/**/*.js && eslint .",
     "validate": "yarn flow",
