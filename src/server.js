@@ -28,9 +28,7 @@ const app = express();
 
 app.use(
   '/graphql',
-  cors({
-    origin: 'http://localhost:3000',
-  }),
+  cors(),
   expressGraphql({
     schema,
     rootValue: root,
@@ -38,6 +36,7 @@ app.use(
   }),
 );
 
-app.listen(4000);
+const port = process.env.NODE_ENV === 'development' ? 4000 : 80;
+app.listen(port);
 
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+console.log(`Running a GraphQL API server at localhost:${port}/graphql`);

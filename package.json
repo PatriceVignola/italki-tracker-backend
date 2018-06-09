@@ -1,13 +1,16 @@
 {
   "name": "italki-api",
   "version": "0.0.1",
+  "main": "dist/server.js",
   "description": "An unofficial API for italki.com.",
-  "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "NODE_ENV=development node start",
     "lint": "eslint .",
     "prettier-lint": "prettier es6 --write server/**/*.js && eslint .",
     "validate": "yarn flow",
+    "build": "babel src -d dist --presets env",
+    "deploy": "yarn validate && yarn build && openode deploy",
+    "sync": "yarn build && sync",
     "test": "jest --coverage"
   },
   "lint-staged": {
@@ -46,6 +49,7 @@
     "italki-api": "^0.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
