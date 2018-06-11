@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development node start",
     "lint": "eslint .",
-    "prettier-lint": "prettier es6 --write server/**/*.js && eslint .",
+    "prettier-lint": "prettier es6 --write src/**/*.js && eslint .",
     "validate": "run-p flow test",
     "build": "babel src -d dist --presets env",
     "deploy": "yarn validate && yarn build && openode deploy",
