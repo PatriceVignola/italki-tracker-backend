@@ -1,4 +1,6 @@
 node_modules
+coverage
+*.log
 examples
 flow-typed
 .gitignore
@@ -6,6 +8,8 @@ flow-typed
 .eslintrc
 .prettierrc
 .flowconfig
+.babelrc
+.circleci
 start.js
 LICENSE
 README.md
