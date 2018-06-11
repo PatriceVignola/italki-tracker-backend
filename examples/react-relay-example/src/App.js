@@ -11,8 +11,9 @@ function App() {
       environment={environment}
       query={graphql`
         query AppQuery {
-          user {
+          user(id: 1280555) {
             id,
+            hasSkype,
           }
         }
       `}
