@@ -29,5 +29,8 @@ jobs:
           name: Static Checking and Testing
           command: yarn validate
       - run:
+          name: Report Coverage
+          command: yarn report-coverage
+      - run:
           name: Building
           command: yarn build
