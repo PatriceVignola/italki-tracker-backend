@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "prettier-lint": "prettier es6 --write src/**/*.js && eslint .",
     "validate": "run-p flow test",
-    "build": "babel src -d dist --presets env",
+    "build": "babel src -d dist --presets env --ignore '**/*.test.js'",
     "deploy": "yarn validate && yarn build && openode deploy",
     "flow": "flow",
     "sync": "yarn build && openode sync",
