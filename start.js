@@ -1,6 +1,4 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-require('babel-register')({
-  presets: ['env', 'flow'],
-});
+require('babel-register')();
 
 module.exports = require('./src/server');

@@ -1,3 +1,3 @@
 # Italki Tracker Backend
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Circle CI Status](https://circleci.com/gh/PatriceVignola/italki-tracker-backend.svg?style=shield)](https://circleci.com/gh/PatriceVignola/italki-tracker-backend) [![Coverage Status](https://coveralls.io/repos/github/PatriceVignola/italki-tracker-backkend/badge.svg?branch=master)](https://coveralls.io/github/PatriceVignola/italki-tracker-backend?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
