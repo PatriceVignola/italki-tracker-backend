@@ -4,12 +4,9 @@
  */
 
 import UserLanguage from './userLanguageSchema';
+import Gender from './genderSchema';
 
 const User = `
-  enum Gender {
-    Unspecified, Female, Male
-  }
-  
   type User {
     id: ID!,
     locale: String,
@@ -54,4 +51,4 @@ const User = `
 `;
 
 // Always export dependencies to make sure that all schemas are self-containing
-export default () => [User, UserLanguage];
+export default () => [User, UserLanguage, Gender];

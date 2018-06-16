@@ -55,7 +55,8 @@
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
     "graphql-tools": "^3.0.2",
-    "italki-api": "^0.1.1"
+    "italki-api": "^0.1.1",
+    "skype-web-api": "^0.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
