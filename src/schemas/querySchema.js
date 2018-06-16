@@ -7,7 +7,7 @@ import User from './userSchema';
 
 const Query = `
   type Query {
-     user(id: ID!): User,
+    user(id: ID!): User,
   }
 `;
 

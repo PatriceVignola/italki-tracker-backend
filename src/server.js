@@ -6,9 +6,22 @@
 import cors from 'cors';
 import express from 'express';
 import expressGraphql from 'express-graphql';
+import mongoose from 'mongoose';
+
 import schema from './schema';
 
 const app = express();
+
+mongoose.connect(process.env.MONGO_URI);
+
+const db = mongoose.connection;
+db.on('error', error => {
+  console.error(error);
+});
+
+db.once('open', () => {
+  console.log('Connected to mongoose');
+});
 
 app.use(
   '/graphql',
