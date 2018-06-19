@@ -5,19 +5,23 @@
 
 import {makeExecutableSchema} from 'graphql-tools';
 
+import userResolver from './resolvers/userResolver';
 import queryResolver from './resolvers/queryResolver';
 import mutationResolver from './resolvers/mutationResolver';
-import userResolver from './resolvers/userResolver';
-import userLanguageLevelResolver from './resolvers/userLanguageLevelResolver';
+import studentResolver from './resolvers/studentResolver';
+import italkiLanguageLevelResolver from './resolvers/italkiLanguageLevelResolver';
+import italkiProfileResolver from './resolvers/italkiProfileResolver';
 import Query from './schemas/querySchema';
 import Mutation from './schemas/mutationSchema';
 
 const typeDefs = [Query, Mutation];
 const resolvers = [
   queryResolver,
-  mutationResolver,
   userResolver,
-  userLanguageLevelResolver,
+  mutationResolver,
+  studentResolver,
+  italkiLanguageLevelResolver,
+  italkiProfileResolver,
 ];
 
 const schema = makeExecutableSchema({typeDefs, resolvers});

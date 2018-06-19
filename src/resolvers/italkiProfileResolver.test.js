@@ -3,7 +3,7 @@
  * @flow
  */
 
-import userResolver from './userResolver';
+import resolver from './italkiProfileResolver';
 
 const expectedLanguages = [
   {
@@ -38,7 +38,7 @@ const expectedLanguages = [
   },
 ];
 
-const mockUser = {
+const mockItalkiProfile = {
   languages: [
     {
       id: 1,
@@ -64,14 +64,16 @@ const mockUser = {
   ],
 };
 
-describe('userResolverTest', () => {
+describe('italkiProfileResolver', () => {
   it('resolves languages with a specified level', () => {
-    const languages = userResolver.User.languages(mockUser, {level: 3});
+    const languages = resolver.ItalkiProfile.languages(mockItalkiProfile, {
+      level: 3,
+    });
     expect(languages).toEqual(expectedLanguages);
   });
 
   it('returns all languages if no level is specified', () => {
-    const languages = userResolver.User.languages(mockUser, {});
-    expect(languages).toEqual(mockUser.languages);
+    const languages = resolver.ItalkiProfile.languages(mockItalkiProfile, {});
+    expect(languages).toEqual(mockItalkiProfile.languages);
   });
 });

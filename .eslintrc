@@ -17,7 +17,8 @@
   "rules": {
     "no-unused-expressions": [2, { "allowShortCircuit": true }],
     "prettier/prettier": [2, "fb", "@format"],
-    "no-console": [0]
-  },
+    "no-console": [0],
+    "no-underscore-dangle": [2, {"allow": ["_id"]}]
+  }
 }
 

@@ -3,15 +3,15 @@
  * @flow
  */
 
-const UserLanguage = `
-  scalar UserLanguageLevel
+const ItalkiLanguage = `
+  scalar ItalkiLanguageLevel
 
-  type UserLanguage {
+  type ItalkiLanguage {
     id: ID!,
     hasCourse: Boolean,
     canTeach: Boolean,
     name: String,
-    level: UserLanguageLevel,
+    level: ItalkiLanguageLevel,
     priority: Int,
     teaching: Boolean,
     learning: Boolean,
@@ -19,4 +19,4 @@ const UserLanguage = `
 `;
 
 // Always export dependencies to make sure that all schemas can compile
-export default () => [UserLanguage];
+export default () => [ItalkiLanguage];

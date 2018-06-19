@@ -5,8 +5,8 @@
 
 import Gender from './genderSchema';
 
-const SkypeUserProfile = `
-  type SkypeUserProfile {
+const SkypeProfile = `
+  type SkypeProfile {
     username: ID!,
     avatarUrl: String,
     birthday: String,
@@ -29,4 +29,4 @@ const SkypeUserProfile = `
 `;
 
 // Always export dependencies to make sure that all schemas are self-containing
-export default () => [SkypeUserProfile, Gender];
+export default () => [SkypeProfile, Gender];

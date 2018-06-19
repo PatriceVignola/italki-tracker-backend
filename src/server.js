@@ -5,8 +5,9 @@
 
 import cors from 'cors';
 import express from 'express';
-import expressGraphql from 'express-graphql';
+import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
+import jwt from 'express-jwt';
 
 import schema from './schema';
 
@@ -26,10 +27,17 @@ db.once('open', () => {
 app.use(
   '/graphql',
   cors(),
-  expressGraphql({
+  jwt({secret: process.env.JWT_SECRET, credentialsRequired: false}),
+  graphqlHTTP(async (req: any) => ({
     schema,
     graphiql: true,
-  }),
+    context: {
+      // Header key: "Authorization"
+      // Header value: "Bearer ${JWT_TOKEN}"
+      jwtSecret: process.env.JWT_SECRET,
+      userId: req.user ? req.user.id : null,
+    },
+  })),
 );
 
 const port = process.env.NODE_ENV === 'development' ? 4000 : 80;

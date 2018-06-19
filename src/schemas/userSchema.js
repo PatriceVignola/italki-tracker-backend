@@ -3,52 +3,43 @@
  * @flow
  */
 
-import UserLanguage from './userLanguageSchema';
-import Gender from './genderSchema';
+import type {User as ItalkiProfileGraphql} from 'italki-api';
+
+import ItalkiProfile from './italkiProfileSchema';
+import Student from './studentSchema';
+import Document from './documentSchema';
+import Int52 from './int52Schema';
+import type {StudentGraphql} from './studentSchema';
+import type {DocumentGraphql} from './documentSchema';
+
+type UserGraphql = {
+  id: string,
+  jwt: string,
+  italkiProfile: ItalkiProfileGraphql,
+  student: StudentGraphql,
+  students: StudentGraphql[],
+  documents: DocumentGraphql[],
+};
 
 const User = `
-  type User {
-    id: ID!,
-    locale: String,
-    localTime: String,
-    avatarUrl: String,
-    premium: Boolean,
-    shortIntroduction: String,
-    interest: String,
-    allowContent: Boolean,
-    livingCountryCode: String,
-    originCountryCode: String,
-    livingCityCode: String,
-    originCityCode: String,
-    originCityName: String,
-    livingCityName: String,
-    timezone: String,
-    timezoneUtc: String,
-    timezoneLocation: String,
-    timezoneIana: String,
-    languages(level: UserLanguageLevel): [UserLanguage],
-    lastLoginTime: String,
-    firstPurchaseTime: String,
-    registerTime: String,
-    twitterUrl: String,
-    facebookUrl: String,
-    linkedinUrl: String,
-    activityPoints: Int,
-    allowMessage: Boolean,
-    notebookCount: Int,
-    friendCount: Int,
-    discussionCount: Int,
-    hasSkype: Boolean,
-    online: Boolean,
-    nickname: String,
-    isTutor: Boolean,
-    questionCount: Int,
-    gender: Gender,
-    sessionCount: Int,
-    professional: Boolean,
-    friendListPublic: Boolean
+  type SkypeLogin {
+    skypeToken: String
+    skypeTokenExpiration: Int52
+    registrationToken: String
+    registrationTokenExpiration: Int52
+  }
+
+  type User implements Node {
+    id: ID!
+    jwt: String
+    email: String!
+    skypeLogin: SkypeLogin
+    student(id: ID!): Student
+    students: [Student]
+    documents: [Document]
   }
 `;
 
 // Always export dependencies to make sure that all schemas are self-containing
-export default () => [User, UserLanguage, Gender];
+export default () => [User, ItalkiProfile, Student, Document, Int52];
+export type {UserGraphql};
