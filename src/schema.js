@@ -24,6 +24,12 @@ const resolvers = [
   italkiProfileResolver,
 ];
 
-const schema = makeExecutableSchema({typeDefs, resolvers});
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+  resolverValidationOptions: {
+    requireResolversForResolveType: false,
+  },
+});
 
 export default schema;

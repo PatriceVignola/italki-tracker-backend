@@ -825,6 +825,12 @@ babel-plugin-transform-regenerator@^6.22.0:
   dependencies:
     regenerator-transform "^0.10.0"
 
+babel-plugin-transform-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
+  dependencies:
+    babel-runtime "^6.22.0"
+
 babel-plugin-transform-strict-mode@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.24.1.tgz#d5faf7aa578a65bbe591cf5edae04a0c67020758"
@@ -3057,12 +3063,11 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-italki-api@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/italki-api/-/italki-api-0.1.1.tgz#a0b48af8ae10df6528bd6da6e26b9b608e8b8b94"
+italki-api@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/italki-api/-/italki-api-0.1.3.tgz#cb47b3646e31c9c2fb5c78658de1058e196c93a8"
   dependencies:
     node-fetch "^2.1.2"
-    regenerator-runtime "^0.11.1"
 
 iterall@^1.1.3, iterall@^1.2.1:
   version "1.2.2"
@@ -4677,7 +4682,7 @@ regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
-regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
+regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 
@@ -5036,16 +5041,15 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-skype-web-api@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/skype-web-api/-/skype-web-api-0.3.0.tgz#8c7769ee55b7c4ad2868fbd3aa4c10fcff9169f6"
+skype-web-api@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/skype-web-api/-/skype-web-api-0.3.1.tgz#2546279731dfb5df2f5351a14757eba382008f89"
   dependencies:
     big-integer "^1.6.31"
     cheerio "^1.0.0-rc.2"
     js-sha256 "^0.9.0"
     node-fetch "^2.1.2"
     query-string "^6.1.0"
-    regenerator-runtime "^0.11.1"
     request "^2.87.0"
     request-promise-native "^1.0.5"
     tough-cookie "^2.4.2"
