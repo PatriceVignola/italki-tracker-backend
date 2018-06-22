@@ -10,10 +10,17 @@ import Document from './documentSchema';
 
 const Mutation = `
   input AddStudentData {
-    italkiId: Int!,
-    skypeUsername: String,
-    weChatUsername: String,
-    email: String,
+    italkiId: Int!
+    skypeUsername: String
+    weChatUsername: String
+    email: String
+  }
+
+  input SignupData {
+    email: String!
+    password: String!
+    skypeUsername: String
+    skypePassword: String
   }
 
   type Mutation {
@@ -22,10 +29,7 @@ const Mutation = `
       password: String!
     ): User
 
-    signup(
-      email: String!
-      password: String!
-    ): User
+    signup(data: SignupData!): User
 
     loginToSkype(
       username: String
