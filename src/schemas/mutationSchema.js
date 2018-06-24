@@ -17,8 +17,6 @@ const Mutation = `
   input SignupData {
     email: String!
     password: String!
-    skypeUsername: String
-    skypePassword: String
   }
 
   input SigninToSkypeData {
