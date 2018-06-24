@@ -9,11 +9,13 @@ import type {User} from '../mongoose/UserModel';
 import type {Context} from '../context';
 
 type Data = {
-  username: string,
-  password: string,
+  data: {
+    username: string,
+    password: string,
+  },
 };
 
-const loginToSkype = async (root: any, data: Data, {userId}: Context) => {
+const signinToSkype = async (root: any, {data}: Data, {userId}: Context) => {
   const {username, password} = data;
 
   const user: User = await UserModel.findOne({_id: userId});
@@ -39,4 +41,4 @@ const loginToSkype = async (root: any, data: Data, {userId}: Context) => {
   };
 };
 
-export default loginToSkype;
+export default signinToSkype;

@@ -9,22 +9,20 @@ import UserModel from '../mongoose/UserModel';
 import type {Context} from '../context';
 
 type Data = {
-  email: string,
-  password: string,
+  data: {
+    email: string,
+    password: string,
+  },
 };
 
-const login = async (
-  root: any,
-  {email, password}: Data,
-  {jwtSecret}: Context,
-) => {
-  const user = await UserModel.findOne({email});
+const signin = async (root: any, {data}: Data, {jwtSecret}: Context) => {
+  const user = await UserModel.findOne({email: data.email});
 
   if (!user) {
     throw Error('Email not found.');
   }
 
-  const passwordsMatch = await argon2.verify(user.password, password);
+  const passwordsMatch = await argon2.verify(user.password, data.password);
 
   if (!passwordsMatch) {
     throw Error('Wrong password.');
@@ -37,4 +35,4 @@ const login = async (
   };
 };
 
-export default login;
+export default signin;

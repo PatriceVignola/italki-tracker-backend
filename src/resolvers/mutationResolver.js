@@ -3,17 +3,17 @@
  * @flow
  */
 
-import login from '../mutations/login';
+import signin from '../mutations/signin';
 import signup from '../mutations/signup';
-import loginToSkype from '../mutations/loginToSkype';
+import signinToSkype from '../mutations/signinToSkype';
 import addStudent from '../mutations/addStudent';
 import sendDocument from '../mutations/sendDocument';
 
 const resolver = {
   Mutation: {
-    login,
+    signin,
     signup,
-    loginToSkype,
+    signinToSkype,
     addStudent,
     sendDocument,
   },

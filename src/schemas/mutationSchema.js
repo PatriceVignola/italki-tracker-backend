@@ -9,11 +9,9 @@ import Student from './studentSchema';
 import Document from './documentSchema';
 
 const Mutation = `
-  input AddStudentData {
-    italkiId: Int!
-    skypeUsername: String
-    weChatUsername: String
-    email: String
+  input SigninData {
+    email: String!
+    password: String!
   }
 
   input SignupData {
@@ -23,26 +21,30 @@ const Mutation = `
     skypePassword: String
   }
 
+  input SigninToSkypeData {
+    username: String!
+    password: String!
+  }
+
+  input AddStudentData {
+    italkiId: Int!
+    skypeUsername: String
+    weChatUsername: String
+    email: String
+  }
+
+  input SendDocumentData {
+    studentId: ID!
+    checksum: String!
+    fileName: String!
+  }
+
   type Mutation {
-    login(
-      email: String!
-      password: String!
-    ): User
-
+    signin(data: SigninData!): User
     signup(data: SignupData!): User
-
-    loginToSkype(
-      username: String
-      password: String
-    ): User
-
+    signinToSkype(data: SigninToSkypeData!): User
     addStudent(data: AddStudentData!): Student
-
-    sendDocument(
-      studentId: ID!
-      checksum: String
-      fileName: String
-    ): Document
+    sendDocument(data: SendDocumentData!): Document
   }
 `;
 

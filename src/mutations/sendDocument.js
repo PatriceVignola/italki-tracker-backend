@@ -9,13 +9,17 @@ import type {Student} from '../mongoose/StudentModel';
 import type {Document} from '../mongoose/DocumentModel';
 
 type Data = {
-  studentId: string,
-  checksum: string,
-  fileName: string,
+  data: {
+    studentId: string,
+    checksum: string,
+    fileName: string,
+  },
 };
 
 // TODO: Replace checksum with buffer
-const sendDocument = async (_: any, {studentId, checksum, fileName}: Data) => {
+const sendDocument = async (_: any, {data}: Data) => {
+  const {studentId, checksum, fileName} = data;
+
   const student: Student = await StudentModel.findOne({
     _id: studentId,
   }).populate({

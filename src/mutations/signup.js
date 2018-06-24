@@ -6,7 +6,7 @@
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import UserModel from '../mongoose/UserModel';
-import loginToSkype from './loginToSkype';
+import signinToSkype from './signinToSkype';
 import type {User} from '../mongoose/UserModel';
 import type {Context} from '../context';
 
@@ -32,7 +32,11 @@ const signup = async (root: any, {data}: Data, {jwtSecret}: Context) => {
   user = await UserModel.create({email, password: hashedPassword});
 
   if (skypeUsername && skypePassword) {
-    await loginToSkype(skypeUsername, skypePassword);
+    await signinToSkype({
+      username: skypeUsername,
+      password: skypePassword,
+    });
+
     console.warn(user.skypeLogin);
     user = await UserModel.findOne({email});
     console.warn(user.skypeLogin);
