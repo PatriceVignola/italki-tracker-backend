@@ -34,7 +34,6 @@ const User = `
     jwt: String
     email: String!
     skypeLogin: SkypeLogin
-    student(id: ID!): Student
     students: [Student]
     documents: [Document]
   }

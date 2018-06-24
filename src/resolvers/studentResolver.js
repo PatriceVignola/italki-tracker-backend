@@ -3,25 +3,28 @@
  * @flow
  */
 
+import mongoose from 'mongoose';
 import {fetchUser} from 'italki-api';
 import {getUserProfile} from 'skype-web-api';
 
 import UserModel from '../mongoose/UserModel';
-import StudentModel from '../mongoose/StudentModel';
-import type {Student} from '../mongoose/StudentModel';
+import DocumentModel from '../mongoose/DocumentModel';
+import type {Document} from '../mongoose/DocumentModel';
 import type {StudentGraphql} from '../schemas/studentSchema';
-
-// TODO: Change the email for the real user's email when login is implemented
-const testEmail = 'vignola.patrice@gmail.com';
+import type {Context} from '../context';
 
 const resolver = {
   Student: {
     italkiProfile: async ({italkiId}: StudentGraphql) => fetchUser(italkiId),
 
-    skypeProfile: async ({skypeUsername}: StudentGraphql) => {
+    skypeProfile: async (
+      {skypeUsername}: StudentGraphql,
+      _: any,
+      {userId}: Context,
+    ) => {
       if (!skypeUsername) return null;
 
-      const {skypeLogin} = await UserModel.findOne({email: testEmail});
+      const {skypeLogin} = await UserModel.findOne({_id: userId});
 
       if (!skypeLogin || skypeLogin.skypeTokenExpiration <= Date.now()) {
         throw Error(
@@ -37,10 +40,14 @@ const resolver = {
       return skypeProfile;
     },
 
-    documents: async ({id}: StudentGraphql) => {
-      const {documents}: Student = await StudentModel.findOne({
-        _id: id,
-      }).populate('documents');
+    documents: async (student: StudentGraphql) => {
+      const documents: Document[] = await DocumentModel.findOne({
+        _id: {
+          $in: student.documents.map(documentId =>
+            mongoose.Types.ObjectID(documentId),
+          ),
+        },
+      });
 
       return documents;
     },

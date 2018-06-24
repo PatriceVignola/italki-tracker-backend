@@ -19,7 +19,7 @@ type StudentGraphql = {
   email: ?string,
   italkiProfile?: ItalkiUserProfile,
   skypeProfile?: SkypeUserProfile,
-  documents?: DocumentGraphql[],
+  documents: DocumentGraphql[],
 };
 
 const Student = `

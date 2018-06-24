@@ -6,7 +6,7 @@
 import Student from './studentSchema';
 import type {StudentGraphql} from './studentSchema';
 
-type DocumentGraphql = {
+export type DocumentGraphql = {
   id: string,
   checksum: string,
   fileName: string,
@@ -24,4 +24,3 @@ const Document = `
 
 // Always export dependencies to make sure that all schemas are self-containing
 export default () => [Document, Student];
-export type {DocumentGraphql};
