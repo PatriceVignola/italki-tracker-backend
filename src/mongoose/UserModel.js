@@ -12,12 +12,7 @@ type UserObject = {
   _id: string,
   email: string,
   password: string,
-  skypeLogin: {
-    skypeToken: string,
-    skypeTokenExpiration: number,
-    registrationToken: string,
-    registrationTokenExpiration: number,
-  },
+  skypeUsername: string,
   students: Student[],
   documents: Document[],
 };
@@ -27,18 +22,11 @@ export type User = {
   toObject: () => UserObject,
 } & UserObject;
 
-const skypeLoginSchema = new mongoose.Schema({
-  skypeToken: String,
-  skypeTokenExpiration: Number,
-  registrationToken: String,
-  registrationTokenExpiration: Number,
-});
-
 const userSchema = new mongoose.Schema(
   {
     email: {type: String, unique: true, required: true},
     password: {type: String, required: true},
-    skypeLogin: skypeLoginSchema,
+    skypeUsername: String,
     students: [{type: mongoose.Schema.Types.ObjectId, ref: 'Student'}],
     documents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Document'}],
   },

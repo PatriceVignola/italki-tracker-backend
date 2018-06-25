@@ -20,7 +20,6 @@ const Mutation = `
   }
 
   input SigninToSkypeData {
-    username: String!
     password: String!
   }
 
@@ -37,10 +36,23 @@ const Mutation = `
     fileName: String!
   }
 
+  input LinkSkypeAccountData {
+    username: String!
+    password: String!
+  }
+
+  type SkypeTokens {
+    skypeToken: String!
+    skypeTokenExpiration: Int52!
+    registrationToken: String!
+    registrationTokenExpiration: Int52!
+  }
+
   type Mutation {
     signin(data: SigninData!): User
     signup(data: SignupData!): User
-    signinToSkype(data: SigninToSkypeData!): User
+    linkSkypeAccount(data: LinkSkypeAccountData!): SkypeTokens
+    signinToSkype(data: SigninToSkypeData!): SkypeTokens
     addStudent(data: AddStudentData!): Student
     sendDocument(data: SendDocumentData!): Document
   }

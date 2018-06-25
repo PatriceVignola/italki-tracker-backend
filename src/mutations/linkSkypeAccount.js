@@ -10,29 +10,24 @@ import type {Context} from '../context';
 
 type Data = {
   data: {
+    username: string,
     password: string,
   },
 };
 
-const signinToSkype = async (root: any, {data}: Data, {userId}: Context) => {
-  const {password} = data;
-  const user: User = await UserModel.findOne({_id: userId});
-  const {skypeUsername} = user;
-
-  if (!skypeUsername) {
-    throw Error('No Skype account has been linked.');
-  }
+const linkSkypeAccount = async (root: any, {data}: Data, {userId}: Context) => {
+  const {username, password} = data;
 
   try {
-    const {skypeToken, registrationToken} = await login(
-      skypeUsername,
-      password,
-    );
+    const {skypeToken, registrationToken} = await login(username, password);
+    const user: User = await UserModel.findOne({_id: userId});
+    user.skypeUsername = username;
+    user.save();
 
     return {
-      skypeToken,
+      skypeToken: skypeToken.value,
       skypeTokenExpiration: skypeToken.epochMillisecondsExpiration,
-      registrationToken,
+      registrationToken: registrationToken.value,
       registrationTokenExpiration:
         registrationToken.epochMillisecondsExpiration,
     };
@@ -41,4 +36,4 @@ const signinToSkype = async (root: any, {data}: Data, {userId}: Context) => {
   }
 };
 
-export default signinToSkype;
+export default linkSkypeAccount;

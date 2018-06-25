@@ -36,6 +36,8 @@ app.use(
       // Header value: "Bearer ${JWT_TOKEN}"
       jwtSecret: process.env.JWT_SECRET,
       userId: req.user ? req.user.id : null,
+      skypeToken: req.get('SkypeToken'),
+      registrationToken: req.get('RegistrationToken'),
     },
   })),
 );
