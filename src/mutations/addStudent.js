@@ -3,10 +3,10 @@
  * @flow
  */
 
+import {fetchUser as fetchItalkiProfile} from 'italki-api';
+
 import UserModel from '../mongoose/UserModel';
 import StudentModel from '../mongoose/StudentModel';
-import type {Student} from '../mongoose/StudentModel';
-import type {User} from '../mongoose/UserModel';
 import type {Context} from '../context';
 
 type Data = {
@@ -23,14 +23,35 @@ const addStudent = async (root: any, {data}: Data, {userId}: Context) => {
     throw Error('You are not logged in.');
   }
 
-  const user: User = await UserModel.findOne({_id: userId});
-  const student: Student = await StudentModel.create(data);
+  const user = await UserModel.findOne({_id: userId})
+    .select('students')
+    .populate({
+      path: 'students',
+      select: '_id',
+      match: {italkiId: data.italkiId},
+    });
+
+  if (user.students.length) {
+    throw Error('You have already added this student.');
+  }
+
+  const italkiProfile = await fetchItalkiProfile(data.italkiId);
+
+  const student = await StudentModel.create(data);
   user.students.push(student);
   await user.save();
 
   return {
-    ...student.toObject(),
-    id: student._id,
+    newStudentEdge: {
+      node: {
+        id: student._id,
+        italkiId: italkiProfile.id,
+        skypeUsername: student.skypeUsername,
+        weChatUsername: student.weChatUsername,
+        email: student.email,
+      },
+      cursor: student._id,
+    },
   };
 };
 

@@ -4,21 +4,6 @@
  */
 
 import mongoose from 'mongoose';
-import type {Student} from './StudentModel';
-
-// TODO: Create a libdef for Mongoose instead
-
-type DocumentObject = {
-  _id: string,
-  checksum: string,
-  fileName: string,
-  students: Student[],
-};
-
-export type Document = {
-  save: () => void,
-  toObject: () => DocumentObject,
-} & DocumentObject;
 
 const documentSchema = new mongoose.Schema(
   {
@@ -29,6 +14,4 @@ const documentSchema = new mongoose.Schema(
   {collection: 'Documents'},
 );
 
-const DocumentModel = mongoose.model('Document', documentSchema);
-
-export default DocumentModel;
+export default mongoose.model('Document', documentSchema);

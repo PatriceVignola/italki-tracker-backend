@@ -5,7 +5,7 @@
 
 import SkypeProfile from './skypeProfileSchema';
 import User from './userSchema';
-import Student from './studentSchema';
+import StudentEdge from './studentEdgeSchema';
 import Document from './documentSchema';
 
 const Mutation = `
@@ -48,15 +48,19 @@ const Mutation = `
     registrationTokenExpiration: Int52!
   }
 
+  type AddStudentResult {
+    newStudentEdge: StudentEdge!
+  }
+
   type Mutation {
     signin(data: SigninData!): User
     signup(data: SignupData!): User
     linkSkypeAccount(data: LinkSkypeAccountData!): SkypeTokens
     signinToSkype(data: SigninToSkypeData!): SkypeTokens
-    addStudent(data: AddStudentData!): Student
+    addStudent(data: AddStudentData!): AddStudentResult!
     sendDocument(data: SendDocumentData!): Document
   }
 `;
 
 // Always export dependencies to make sure that all schemas are self-containing
-export default () => [Mutation, SkypeProfile, User, Student, Document];
+export default () => [Mutation, SkypeProfile, User, StudentEdge, Document];

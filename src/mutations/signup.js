@@ -8,7 +8,6 @@ import jwt from 'jsonwebtoken';
 import {validate as validateEmail} from 'email-validator';
 
 import UserModel from '../mongoose/UserModel';
-import type {User} from '../mongoose/UserModel';
 import type {Context} from '../context';
 
 type Data = {
@@ -29,7 +28,7 @@ const signup = async (root: any, {data}: Data, {jwtSecret}: Context) => {
     throw Error('Your password must be at least 8 characters.');
   }
 
-  let user: User = await UserModel.findOne({email});
+  let user = await UserModel.findOne({email});
 
   if (user) {
     throw Error('An account with this email already exists.');

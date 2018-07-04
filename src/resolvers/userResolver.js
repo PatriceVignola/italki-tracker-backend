@@ -4,32 +4,56 @@
  */
 
 import mongoose from 'mongoose';
-import StudentModel from '../mongoose/StudentModel';
+import UserModel from '../mongoose/UserModel';
 import DocumentModel from '../mongoose/DocumentModel';
-import type {User} from '../mongoose/UserModel';
-import type {DocumentGraphql} from '../schemas/documentSchema';
+
+type StudentConnectionArgs = {
+  first: number,
+  last: number,
+};
 
 const resolver = {
   User: {
-    students: async (user: User) => {
-      const students = await StudentModel.find({
-        _id: {
-          $in: user.students.map(studentId =>
-            mongoose.Types.ObjectId(studentId),
-          ),
-        },
-      });
+    students: async (user: any, {first, last}: StudentConnectionArgs) => {
+      if (first < 1) {
+        throw Error('Argument "first" must be greater than  0.');
+      }
 
-      return students.map(student => ({
-        id: student._id,
-        italkiId: student.italkiId,
-        skypeUsername: student.skypeUsername,
-        weChatUsername: student.weChatUsername,
-        email: student.email,
-      }));
+      if (last < first) {
+        throw Error('Argument "last" cannot be smaller than argument "first".');
+      }
+
+      const {students} = await UserModel.findOne({_id: user.id}, 'students', {
+        skip: first - 1,
+        limit: last - first + 1,
+      }).populate('students');
+
+      const startCursor = students.length ? students[0]._id : null;
+      const endCursor = students.length
+        ? students[students.length - 1]._id
+        : null;
+
+      return {
+        pageInfo: {
+          hasNextPage: first + last <= students.length,
+          hasPreviousPage: first > 1,
+          startCursor,
+          endCursor,
+        },
+        edges: students.map(student => ({
+          node: {
+            id: student._id,
+            italkiId: student.italkiId,
+            skypeUsername: student.skypeUsername,
+            weChatUsername: student.weChatUsername,
+            email: student.email,
+          },
+          cursor: student._id,
+        })),
+      };
     },
 
-    documents: async (user: User): Promise<DocumentGraphql[]> => {
+    documents: async (user: any) => {
       const documents = await DocumentModel.find({
         _id: {
           $in: user.documents.map(documentId =>

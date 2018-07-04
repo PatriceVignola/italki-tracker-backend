@@ -12,8 +12,6 @@ const italkiLanguageLevelError = new Error(
 const resolver = {
   ItalkiLanguageLevel: new GraphQLScalarType({
     name: 'ItalkiLanguageLevel',
-    description:
-      'An integer between 1 and 7 (inclusive) representing the language level',
     serialize: value => {
       /*
         Ran when the user wants the field to appear in its results, e.g.:

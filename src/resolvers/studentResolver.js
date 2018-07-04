@@ -9,16 +9,15 @@ import {getUserProfile} from 'skype-web-api';
 
 import UserModel from '../mongoose/UserModel';
 import DocumentModel from '../mongoose/DocumentModel';
-import type {Document} from '../mongoose/DocumentModel';
-import type {StudentGraphql} from '../schemas/studentSchema';
 import type {Context} from '../context';
 
 const resolver = {
   Student: {
-    italkiProfile: async ({italkiId}: StudentGraphql) => fetchUser(italkiId),
+    italkiProfile: async ({italkiId}: {italkiId: number}) =>
+      fetchUser(italkiId),
 
     skypeProfile: async (
-      {skypeUsername}: StudentGraphql,
+      {skypeUsername}: {skypeUsername: string},
       _: any,
       {userId}: Context,
     ) => {
@@ -40,7 +39,7 @@ const resolver = {
       return skypeProfile;
     },
 
-    documents: async (student: StudentGraphql) => {
+    documents: async (student: {documents: any[]}) => {
       const documents: Document[] = await DocumentModel.findOne({
         _id: {
           $in: student.documents.map(documentId =>

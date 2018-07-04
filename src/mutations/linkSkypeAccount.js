@@ -5,7 +5,6 @@
 
 import {login} from 'skype-web-api';
 import UserModel from '../mongoose/UserModel';
-import type {User} from '../mongoose/UserModel';
 import type {Context} from '../context';
 
 type Data = {
@@ -20,7 +19,7 @@ const linkSkypeAccount = async (root: any, {data}: Data, {userId}: Context) => {
 
   try {
     const {skypeToken, registrationToken} = await login(username, password);
-    const user: User = await UserModel.findOne({_id: userId});
+    const user = await UserModel.findOne({_id: userId});
     user.skypeUsername = username;
     user.save();
 

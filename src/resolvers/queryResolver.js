@@ -5,7 +5,6 @@
 
 import {fetchUser as fetchItalkiProfile} from 'italki-api';
 import UserModel from '../mongoose/UserModel';
-import type {User} from '../mongoose/UserModel';
 
 const resolver = {
   Query: {
@@ -14,15 +13,19 @@ const resolver = {
         throw Error('You are not logged in.');
       }
 
-      const user: User = await UserModel.findOne({_id: userId});
+      const user = await UserModel.findOne(
+        {_id: userId},
+        'email skypeUsername',
+      );
 
       if (!user) {
         throw Error("This account doesn't exist anymore.");
       }
 
       return {
-        ...user.toObject(),
         id: user._id,
+        email: user.email,
+        skypeUsername: user.skypeUsername,
       };
     },
 
