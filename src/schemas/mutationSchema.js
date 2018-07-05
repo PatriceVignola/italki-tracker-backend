@@ -30,6 +30,10 @@ const Mutation = `
     email: String
   }
 
+  input DeleteStudentData {
+    id: ID!
+  }
+
   input SendDocumentData {
     studentId: ID!
     checksum: String!
@@ -52,12 +56,17 @@ const Mutation = `
     newStudentEdge: StudentEdge!
   }
 
+  type DeleteStudentResult {
+    deletedStudentId: String
+  }
+
   type Mutation {
     signin(data: SigninData!): User
     signup(data: SignupData!): User
     linkSkypeAccount(data: LinkSkypeAccountData!): SkypeTokens
     signinToSkype(data: SigninToSkypeData!): SkypeTokens
     addStudent(data: AddStudentData!): AddStudentResult!
+    deleteStudent(data: DeleteStudentData): DeleteStudentResult!
     sendDocument(data: SendDocumentData!): Document
   }
 `;

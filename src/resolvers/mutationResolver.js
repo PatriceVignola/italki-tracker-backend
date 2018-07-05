@@ -8,6 +8,7 @@ import signup from '../mutations/signup';
 import linkSkypeAccount from '../mutations/linkSkypeAccount';
 import signinToSkype from '../mutations/signinToSkype';
 import addStudent from '../mutations/addStudent';
+import deleteStudent from '../mutations/deleteStudent';
 import sendDocument from '../mutations/sendDocument';
 
 const resolver = {
@@ -17,6 +18,7 @@ const resolver = {
     linkSkypeAccount,
     signinToSkype,
     addStudent,
+    deleteStudent,
     sendDocument,
   },
 };
