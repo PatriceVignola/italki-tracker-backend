@@ -14,6 +14,7 @@ const studentSchema = new mongoose.Schema(
         partialFilterExpression: {skypeUsername: {$type: 'string'}},
       },
     },
+    skypeMri: {type: String},
     weChatUsername: {
       type: String,
       index: {

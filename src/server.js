@@ -8,6 +8,7 @@ import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
 import jwt from 'express-jwt';
+import multer from 'multer';
 
 import schema from './schema';
 
@@ -28,6 +29,7 @@ app.use(
   '/graphql',
   cors(),
   jwt({secret: process.env.JWT_SECRET, credentialsRequired: false}),
+  multer().any(),
   graphqlHTTP(async (req: any) => ({
     schema,
     graphiql: true,
@@ -38,6 +40,7 @@ app.use(
       userId: req.user ? req.user.id : null,
       skypeToken: req.get('SkypeToken'),
       registrationToken: req.get('RegistrationToken'),
+      files: req.files,
     },
   })),
 );

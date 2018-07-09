@@ -36,8 +36,6 @@ const Mutation = `
 
   input SendDocumentData {
     studentId: ID!
-    checksum: String!
-    fileName: String!
   }
 
   input LinkSkypeAccountData {
@@ -60,6 +58,10 @@ const Mutation = `
     deletedStudentId: String
   }
 
+  type SendDocumentResult {
+    document: Document!
+  }
+
   type Mutation {
     signin(data: SigninData!): User
     signup(data: SignupData!): User
@@ -67,7 +69,7 @@ const Mutation = `
     signinToSkype(data: SigninToSkypeData!): SkypeTokens
     addStudent(data: AddStudentData!): AddStudentResult!
     deleteStudent(data: DeleteStudentData): DeleteStudentResult!
-    sendDocument(data: SendDocumentData!): Document
+    sendDocument(data: SendDocumentData!): SendDocumentResult!
   }
 `;
 
