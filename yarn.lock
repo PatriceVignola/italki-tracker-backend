@@ -5093,9 +5093,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-skype-web-api@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/skype-web-api/-/skype-web-api-0.3.3.tgz#15f3d48761ceee83107a6d59c35e7b26e5ad9c82"
+skype-web-api@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/skype-web-api/-/skype-web-api-0.3.5.tgz#675e6256324bac0ee69388a25b9b36a8c59bd6c7"
   dependencies:
     big-integer "^1.6.31"
     cheerio "^1.0.0-rc.2"
